@@ -2,8 +2,7 @@ class MyHashMap {
 public:
     int arr[1000001];
     MyHashMap() {
-        for(int i=0; i<= 1000000; i++)
-            arr[i] = -1;
+        fill(arr, arr+1000001, -1);
     }
     
     void put(int key, int value) {
