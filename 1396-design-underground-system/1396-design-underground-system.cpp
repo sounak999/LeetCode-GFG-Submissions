@@ -7,6 +7,7 @@ public:
     unordered_map<string, pair<int, int>> chkOut;
     
     // hashmap for calculating total time & counting the no. of journeys done so far 
+    // string = endStaion + " to " + startStaion
     unordered_map<string, pair<int, int>> count;
     
     UndergroundSystem() {
@@ -18,10 +19,13 @@ public:
     }
     
     void checkOut(int id, string stationName, int t) {
+        // updating our chkOut hashmap
         chkOut[stationName] = {id, t};
+        // with the help of chkOut, we extract our starting Station and boarding time
         string prevStation = chkIn[id].first;
         int prevTime = chkIn[id].second;
         
+        // updating our count hashmap
         string journey = prevStation + " to " + stationName;
         // total time for each journey
         count[journey].first += (t-prevTime);
@@ -30,9 +34,13 @@ public:
     }
     
     double getAverageTime(string startStation, string endStation) {
+        // making journey string
         string journey = startStation + " to " + endStation;
-        double totalTime = count[journey].first;
-        double noOfJourneys = count[journey].second;
+        // making double for correct return format
+        double totalTime = count[journey].first; 
+        int noOfJourneys = count[journey].second;
+        
+        // returning our answer
         return totalTime/noOfJourneys;
     }
 };
