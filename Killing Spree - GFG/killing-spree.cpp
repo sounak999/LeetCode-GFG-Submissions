@@ -8,17 +8,15 @@ class Solution {
 public:
     long long int killinSpree(long long int n)
     {
-        long long i = 1;
-        while(n > 0)
+        long long int i=1;
+        
+        while(n>0)
         {
             n -= i*i;
-            if(n < 0)
-                break;
-                
             i++;
-        }
-        
-        return i-1;
+       }
+       
+       return n==0 ? i-1 : i-2;
     }
 };
 
