@@ -3,6 +3,18 @@ using namespace std;
 #define mod 1000000007
 typedef long long ll;
 
+void reverseArray(int arr[], int start, int end)
+{
+    while (start < end)
+    {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;
+        end--;
+    }
+}    
+
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -21,13 +33,7 @@ int main()
             cin>>arr[i];
         }
         
-        // For loop to reverse the array
-        for(int i=0;i<n/2;i++)
-        {
-            int temp = arr[i];
-            arr[i] = arr[n-1-i];
-            arr[n-1-i] = temp;
-        }
+        reverseArray(arr, 0, n-1);
         
         // For loop to output reversed array
         for(int i=0;i<n;i++)
