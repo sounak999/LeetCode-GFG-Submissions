@@ -1,21 +1,23 @@
 class Solution {
 public:
     int maxOperations(vector<int>& nums, int k) {
-        unordered_map<int, int> m;        
-        int ans = 0;
+        sort(nums.begin(), nums.end());
+        int i=0, j=nums.size()-1, ans = 0;
         
-        for(int i=0; i<nums.size(); i++)
+        while(i < j)
         {
-            int ele = k-nums[i];
-            if(m[ele] > 0)
+            int sum = nums[i]+nums[j];
+            if(sum == k)
             {
                 ans++;
-                m[ele]--;
+                i++;
+                j--;
             }
+            else if(sum > k)
+                j--;
             else
-            {
-                m[nums[i]]++;
-            }
+                i++;
+            
         }
         
         return ans;
