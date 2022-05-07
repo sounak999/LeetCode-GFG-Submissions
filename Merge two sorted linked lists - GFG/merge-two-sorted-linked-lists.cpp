@@ -99,19 +99,13 @@ Node* sortedMerge(Node* head1, Node* head2)
     }
    
     if(head1 && head2 && head1->data > head2->data)
-   {
-        Node *temp = head2->next;
-        head2->next = sortedMerge(head1,temp);
-        
+    {
+        head2->next = sortedMerge(head1, head2->next);
         return head2;
-       
-   }
-   else 
-   {
-        Node *temp = head1->next;
-        head1->next = sortedMerge(head2,temp);
-       
+    }
+    else 
+    {
+        head1->next = sortedMerge(head2, head1->next);
         return head1;
-    
-   }
+    }
 }  
