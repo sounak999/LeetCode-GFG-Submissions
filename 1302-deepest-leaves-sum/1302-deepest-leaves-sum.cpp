@@ -10,7 +10,7 @@
  * };
  */
 class Solution {
-    void solve(TreeNode* root, int height, multimap<int, int> &mp)
+    void solve(TreeNode* root, int height, unordered_multimap<int, int> &mp)
     {
         if(root != NULL)
         {
@@ -35,7 +35,7 @@ public:
     int deepestLeavesSum(TreeNode* root) {
         int height = getHeight(root);
         
-        multimap<int, int> mp;
+        unordered_multimap<int, int> mp;
         solve(root, 1, mp);
         
         int res = 0;
