@@ -10,41 +10,27 @@
  * };
  */
 class Solution {
-    void solve(TreeNode* root, int height, unordered_multimap<int, int> &mp)
-    {
-        if(root != NULL)
-        {
-            mp.insert(pair<int, int>(root->val, height));
-            
-            if(root->right)
-                solve(root->right, height+1, mp);
-            if(root->left)
-                solve(root->left, height+1, mp);
-        }
-    }
-    
-    int getHeight(TreeNode* root)
-    {
-        if(root == NULL) 
-            return 0;
-        
-        return 1 + max(getHeight(root->left), getHeight(root->right));
-    }
-    
 public:
     int deepestLeavesSum(TreeNode* root) {
-        int height = getHeight(root);
+        queue<TreeNode *> q;
+        q.push(root);
         
-        unordered_multimap<int, int> mp;
-        solve(root, 1, mp);
+        int sum = 0;
         
-        int res = 0;
-        for(auto it: mp)
-        {
-            if(it.second == height)
-                res += it.first;
+        while(!q.empty()){
+            int size = q.size(); 
+            sum = 0;
+			//sum is used to add node values at each level 
+            for(int i=0;i<size;i++){
+                TreeNode* front=q.front();
+                q.pop();
+                sum += front->val;
+                if(front->left != NULL) q.push(front->left);
+                if(front->right != NULL) q.push(front->right);
+            }
         }
         
-        return res;
+		//return sum of node values at last level 
+        return sum;
     }
 };
