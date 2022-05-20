@@ -15,7 +15,7 @@ public:
     }
     
     int uniquePaths(int m, int n) {
-        vector<vector<int>> dp(m+1, vector<int> (n+1, -1));
+        vector<vector<int>> dp(m, vector<int> (n, -1));
         int ans = solve(m, n, 0, 0, dp);
         if(m == 1 && n == 1)
             return ans;
