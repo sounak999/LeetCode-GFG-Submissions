@@ -8,28 +8,23 @@ using namespace std;
 class Solution{   
   public:
     vector<int> farNumber(int N,vector<int> Arr){
-        vector<int> ans;
-        bool flag;
-        for(int i=0;i<N;i++)
+        vector <int> v(N), r(N);
+        v[N-1] = Arr[N-1];
+        r[N-1] = -1;
+        
+        for(int i = N-2; i>=0; i--)
         {
-            flag = 0;
+            auto it = lower_bound(v.begin()+i+1, v.end(), Arr[i]);
             
-            for(int j=N-1;j>i;j--)
-            {
-                if(Arr[j]<Arr[i])
-                {
-                    flag = 1;
-                    ans.push_back(j);
-                    break;
-                }
-            }
-            
-            if(flag==0)
-                ans.push_back(-1);
-           
+            if(it == v.begin()+i+1)
+                r[i] = -1;
+            else
+                r[i] = it-v.begin()-1;
+                
+            v[i] = min(v[i+1], Arr[i]);
         }
         
-        return ans;
+        return r;
     }
 };
 
