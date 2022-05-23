@@ -17,24 +17,8 @@ public:
         while(i < j)
         {
             int sum = arr[i] + arr[j];
-            if(sum == x)
-            {
-                if(ans.empty())
-                {
-                    ans.push_back(arr[i]);
-                    ans.push_back(arr[j]);
-                }
-                else
-                {
-                    ans.pop_back();
-                    ans.pop_back();
-                    ans.push_back(arr[i]);
-                    ans.push_back(arr[j]);
-                }
-                break;
-            }
-            
             int diff = abs(sum - x);
+            
             if(diff < minAbs)
             {
                 minAbs = diff;
