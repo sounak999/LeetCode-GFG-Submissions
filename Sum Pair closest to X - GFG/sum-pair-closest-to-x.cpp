@@ -11,9 +11,9 @@ class Solution{
 public:
     vector<int> sumClosest(vector<int>arr, int x)
     {
-        vector<int> ans;
         int n = arr.size();
         int i = 0, j = n-1, minAbs = INT_MAX;
+        int res_l = -1, res_r = -1;
         while(i < j)
         {
             int sum = arr[i] + arr[j];
@@ -22,18 +22,8 @@ public:
             if(diff < minAbs)
             {
                 minAbs = diff;
-                if(ans.empty())
-                {
-                    ans.push_back(arr[i]);
-                    ans.push_back(arr[j]);
-                }
-                else
-                {
-                    ans.pop_back();
-                    ans.pop_back();
-                    ans.push_back(arr[i]);
-                    ans.push_back(arr[j]);
-                }
+                res_l = i;
+                res_r = j;
             }
             
             if(sum > x)
@@ -42,7 +32,7 @@ public:
                     i++;
         }
         
-        return ans;
+        return {arr[res_l], arr[res_r]};
     }
 };
 
