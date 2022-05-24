@@ -10,15 +10,59 @@ using namespace std;
 class Solution{
     public:
     //Function to return the count of number of elements in union of two arrays.
-    int doUnion(int a[], int n, int b[], int m)  {
-        unordered_set<int> s;
-        for(int i=0; i<n; i++)
-            s.insert(a[i]);
+    int doUnion(int arr1[], int n1, int arr2[], int n2)  {
+        vector<int> ans;
+        sort(arr1, arr1 + n1);
+        sort(arr2, arr2 + n2);
+        
+        int i = 0, j = 0;
+        while(i < n1 && j < n2)
+        {
+            if(arr1[i] < arr2[j])
+            {
+                if(ans.empty() || ans.back() != arr1[i])
+                    ans.push_back(arr1[i]);
+                    
+                i++;
+            }
+            else if(arr2[j] < arr1[i])
+            {
+                if(ans.empty() || ans.back() != arr2[j])
+                    ans.push_back(arr2[j]);
+                    
+                j++;
+            }
+            else
+            {
+                if(ans.empty() || ans.back() != arr1[i])
+                    ans.push_back(arr1[i]);
+                    
+                i++;
+                j++;
+            }
+        }
+        
+        while(i < n1)
+        {
+            if(ans.back() != arr1[i])
+                    ans.push_back(arr1[i]);
+                    
+            i++;
+        }
+        
+        while(j < n2)
+        {
+            if(ans.back() != arr2[j])
+                    ans.push_back(arr2[j]);
+                    
+            j++;
+        }
+        
+        // for(int x: ans)
+        //     cout<<x<<" ";
+        // cout<<endl;
             
-        for(int j=0; j<m; j++)
-            s.insert(b[j]);
-            
-        return s.size();
+        return ans.size();
     }
 };
 
