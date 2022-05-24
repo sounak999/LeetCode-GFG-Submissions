@@ -15,27 +15,42 @@ class Solution{
         sort(arr1, arr1 + n1);
         sort(arr2, arr2 + n2);
         
-        int i = 0, j = 0;
+        int i = 0, j = 0, res = 0, last;
         while(i < n1 && j < n2)
         {
             if(arr1[i] < arr2[j])
             {
-                if(ans.empty() || ans.back() != arr1[i])
-                    ans.push_back(arr1[i]);
-                    
+                // if(ans.empty() || ans.back() != arr1[i])
+                //     ans.push_back(arr1[i]);
+                if(i == 0 || (i>0 && last != arr1[i]))    
+                {
+                    last = arr1[i];
+                    res++;
+                }
+                
                 i++;
             }
             else if(arr2[j] < arr1[i])
             {
-                if(ans.empty() || ans.back() != arr2[j])
-                    ans.push_back(arr2[j]);
+                // if(ans.empty() || ans.back() != arr2[j])
+                //     ans.push_back(arr2[j]);
+                if(j == 0 || (j>0 && last != arr2[j]))    
+                {
+                    last = arr2[j];
+                    res++;
+                } 
                     
                 j++;
             }
             else
             {
-                if(ans.empty() || ans.back() != arr1[i])
-                    ans.push_back(arr1[i]);
+                // if(ans.empty() || ans.back() != arr1[i])
+                //     ans.push_back(arr1[i]);
+                if(i == 0 || (i>0 && last != arr1[i]))    
+                {
+                    last = arr1[i];
+                    res++;
+                }
                     
                 i++;
                 j++;
@@ -44,16 +59,26 @@ class Solution{
         
         while(i < n1)
         {
-            if(ans.back() != arr1[i])
-                    ans.push_back(arr1[i]);
-                    
+            // if(ans.back() != arr1[i])
+            //         ans.push_back(arr1[i]);
+            if(i == 0 || i>0 && last != arr1[i])
+            {
+                last = arr1[i];
+                res++;
+            }   
+            
             i++;
         }
         
         while(j < n2)
         {
-            if(ans.back() != arr2[j])
-                    ans.push_back(arr2[j]);
+            // if(ans.back() != arr2[j])
+            //         ans.push_back(arr2[j]);
+            if(j==0 || j>0 && last != arr2[j])
+            {
+                last = arr2[j];
+                res++;
+            } 
                     
             j++;
         }
@@ -62,7 +87,8 @@ class Solution{
         //     cout<<x<<" ";
         // cout<<endl;
             
-        return ans.size();
+        // return ans.size();
+        return res;
     }
 };
 
