@@ -8,19 +8,11 @@ using namespace std;
 
 class Solution {
   public:
-    void reArrange(int arr[], int n) {
-        int even = 0, odd = 1;
-        
-        while(true)
-        {
-            while(even < n && arr[even]%2 == 0)
-                even += 2;
-            while(odd < n && arr[odd]%2 == 1)
-                odd += 2;
-            if(odd < n && even < n)
-                swap(arr[odd], arr[even]);
-            else    
-                break;
+    void reArrange(int a[], int N, int e = 0, int o = 1) {
+        while(e < N && o < N){
+            swap(a[e], a[o]);
+            while(a[e]%2==0) e += 2;
+            while(a[o]%2==1) o += 2; 
         }
     }
 };
