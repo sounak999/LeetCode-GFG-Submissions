@@ -15,6 +15,7 @@ class Solution{
     {
         vector<int> prefix;
         int sum = 0;
+        // find prefix sum and store them
         for(int i=0; i<n; i++) {
             
             sum += arr[i];
@@ -24,6 +25,8 @@ class Solution{
                 return true;
         }
         
+        // using set, we'll find the first repeating element
+        // in the prefix array
         unordered_set<int> s;
         for(int i=0; i<prefix.size(); i++) {
             
