@@ -11,6 +11,7 @@ class Solution
         {
             vector <int> ans;
             
+            // finding intersection b/w first two arrays
             int i=0, j=0;
             while(i < n1 && j < n2)
             {
@@ -20,6 +21,8 @@ class Solution
                     j++;
                 else
                 {
+                    // handling the duplicates and
+                    // storing into the ans vector
                     if(ans.empty() || ans.back() != A[i])
                         ans.push_back(A[i]);
                     i++;
@@ -27,9 +30,11 @@ class Solution
                 }
             }
             
-            
-            int k = 0, l = 0, n4 = ans.size();
             vector<int> actualAns;
+            
+            // finding intersection b/w third 
+            // array and the ans vector
+            int k = 0, l = 0, n4 = ans.size();
             while(k < n3 && l < n4)
             {
                 if(C[k] < ans[l])
