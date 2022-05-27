@@ -15,12 +15,12 @@ class Solution {
             int x = (n*y)/d;
             if(__gcd(x,y) == 1) 
             {
-                if(1.0*x/y > 1.0*numerator /denominator )
-                    numerator =x, denominator =y;
+                if(1.0*x/y > 1.0*numerator/denominator )
+                    numerator = x, denominator = y;
             }
         }
    
-    return {numerator, denominator};
+        return {numerator, denominator};
    }
 };
 
