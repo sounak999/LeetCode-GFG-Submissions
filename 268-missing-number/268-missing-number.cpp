@@ -1,19 +1,20 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        int n = nums.size();
-        vector<bool> isPresent(n+1, false);
-        for(auto x: nums)
+        
+        int res = 0;
+        
+        for(int i=0; i<=nums.size(); i++)
         {
-            isPresent[x] = true;
+            if(i < nums.size())
+            {
+                res ^= nums[i];
+                res ^= i;
+            }
+            else
+                res = res^i;
         }
         
-        for(int i=0; i<=n; i++)
-        {
-            if(!isPresent[i])
-                return i;
-        }
-            
-        return -1;
+        return res;
     }
 };
