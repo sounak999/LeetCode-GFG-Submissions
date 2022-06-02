@@ -1,15 +1,11 @@
 class Solution {
 public:
     bool isPowerOfFour(int n) {
-        if(n == 1) 
+        if(n==1 ||n==4)
             return true;
-        
-        if(n < 1)
+        if(n == 0 || n%4 != 0)
             return false;
         
-        int isDiv = n%4;
-        bool solve = isPowerOfFour(n/4);
-        
-        return (isDiv == 0 && solve);
+        return isPowerOfFour(n/4);
     }
 };
