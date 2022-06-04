@@ -1,8 +1,7 @@
 class Solution {
     bool isSafe(int row, int col, char val, vector<vector<char>>& board)
     {
-        set<char> rows, cols, subGrid;
-        cout<<val<<" -> ";
+        unordered_set<char> rows, cols, subGrid;
         for(int i=0; i<board.size(); i++)
         {
             // row check
