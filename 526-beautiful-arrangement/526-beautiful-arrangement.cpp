@@ -1,27 +1,32 @@
 class Solution {
-    void solve(vector<bool> &vis, int index, int &ans)
+    int solve(vector<int> &perm, vector<bool> &vis, int index, int n)
     {
-        if(index == vis.size())
+        if(index == n+1)
         {
-            ans++;
-            return ;
+            return 1;
         }
         
-        for(int i=1; i<vis.size(); i++)
+        int cnt = 0;
+        for(int i=0; i<perm.size(); i++)
         {
-            if(!vis[i] && (index%i == 0 || i%index == 0))
+            if(!vis[perm[i]] && (perm[i] % index == 0 || index % perm[i] == 0))
             {
-                vis[i] = 1;
-                solve(vis, index+1, ans);
-                vis[i] = 0;
+                vis[perm[i]] = 1;
+                cnt += solve(perm, vis, index+1, n);
+                vis[perm[i]] = 0;
             }
         }
+        
+        return cnt;
     }
 public:
     int countArrangement(int n) {
+        vector<int> v;
+        for(int i=1; i<=n; i++)
+            v.push_back(i);
+        
         vector<bool> vis(n+1, false);
-        int ans = 0;
-        solve(vis, 1, ans);
-        return ans;
+        
+        return solve(v, vis, 1, n);
     }
 };
