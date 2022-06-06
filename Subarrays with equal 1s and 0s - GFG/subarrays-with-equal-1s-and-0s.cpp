@@ -15,10 +15,9 @@ class Solution{
             if(arr[i] == 0)
                 arr[i] = -1;
                 
-        long long int pre = arr[0];
+        long long int pre = 0;
         unordered_map<long long int, int> mp;
-        mp[arr[0]]++;
-        for(int i=1; i<n; i++)
+        for(int i=0; i<n; i++)
         {
             pre += arr[i];
             if(pre == 0)
