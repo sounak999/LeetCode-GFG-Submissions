@@ -1,30 +1,34 @@
 class Solution {
-public:
-    vector<vector<int>> vec;
-
-    void fun(int st,int k,int n,vector<int> v) {
-        if(k==0 && n==0)
+    void solve(vector<int>& arr, vector<vector<int>>& ans, vector<int>& output, int k, int n, int index)
+    {
+        if(n == 0)
         {
-            vec.push_back(v);
-            return;
+            if(output.size() == k)
+                ans.push_back(output);
+            
+            return; 
         }
-    
-        if(k<=0) return;
-    
-        for(int i=st;i<=9;i++)
+        
+        if(output.size() > k || n < 0)
+            return ;
+        
+        for(int i=index; i<arr.size(); i++)
         {
-            if(n>=i)
-            {
-                v.push_back(i);
-                fun(i+1, k-1, n-i, v);
-                v.pop_back();
-            }
+            output.push_back(arr[i]);
+            solve(arr, ans, output, k, n-arr[i], i+1);
+            output.pop_back();
         }
     }
-
+public:
     vector<vector<int>> combinationSum3(int k, int n) {
-        vector<int> v;
-        fun(1,k,n,v);
-        return vec;
+        vector<vector<int>> ans;
+        vector<int> output;
+        vector<int> arr;
+        
+        for(int i=1; i<=9; i++)
+            arr.push_back(i);
+        
+        solve(arr, ans, output, k, n, 0);
+        return ans;
     }
 };
