@@ -2,12 +2,10 @@ class Solution {
 public:
     vector<int> diffWaysToCompute(string exp) {
         vector<int> ans;
-        bool isNum = true;
         for(int i=0; i<exp.length(); i++)
         {
             if(exp[i] == '+' || exp[i] == '-' || exp[i] == '*')
             {
-                isNum = false;
                 vector<int> leftAns = diffWaysToCompute(exp.substr(0, i));
                 vector<int> rightAns = diffWaysToCompute(exp.substr(i+1));
                 
@@ -26,7 +24,7 @@ public:
             }
         }
         
-        if(isNum == true)
+        if(ans.size() == 0)
             ans.push_back(stoi(exp));
             
         return ans;    
