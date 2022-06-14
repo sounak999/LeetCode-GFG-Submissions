@@ -9,15 +9,13 @@ class Solution {
         
         char ch = board[i][j];
         board[i][j] = '.';
-        index += 1;
         
-        bool left = solve(board, i, j-1, index, word);
-        bool right = solve(board, i, j+1, index, word);
-        bool up = solve(board, i-1, j, index, word);
-        bool down = solve(board, i+1, j, index, word);
+        bool left = solve(board, i, j-1, index+1, word);
+        bool right = solve(board, i, j+1, index+1, word);
+        bool up = solve(board, i-1, j, index+1, word);
+        bool down = solve(board, i+1, j, index+1, word);
         
         board[i][j] = ch;
-        index -= 1;
         
         return (left || right || up || down);
     }
