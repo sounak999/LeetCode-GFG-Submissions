@@ -5,20 +5,22 @@ public:
         for(char c: s)
             freq[c - 'a']++;
         
-        int dltCnt = 0;
-        unordered_set<int> look;
+        sort(freq.begin(), freq.end(), greater<int>());
         
-        for(int i=0; i<26; i++) {
+        int deleteCount = 0;
+        int maxFreqAllowed = s.size();
+        
+        for(int i=0; i<26 && freq[i] > 0; i++) {
             
-            while(freq[i] && look.find(freq[i]) != look.end())
+            if(freq[i] > maxFreqAllowed)
             {
-                freq[i]--;
-                dltCnt++;
+                deleteCount += (freq[i] - maxFreqAllowed);
+                freq[i] = maxFreqAllowed;
             }
-                
-            look.insert(freq[i]);
+            
+            maxFreqAllowed = max(0, freq[i] - 1);
         }
         
-        return dltCnt;
+        return deleteCount;
     }
 };
