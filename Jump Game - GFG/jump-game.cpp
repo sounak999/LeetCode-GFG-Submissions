@@ -9,7 +9,7 @@ using namespace std;
 
 class Solution {
   public:
-    int canReach(int A[], int N, int i = 0) {
+    int canReach(int A[], int N) {
         int reachable = 0;
         for(int i=0; i<N; i++)
         {
