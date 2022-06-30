@@ -8,23 +8,23 @@ using namespace std;
 // User function Template for C++
 
 class Solution{
-    long long int solve(int N, vector<long long int> &dp)
-    {
+public:
+    long long int arrangeTiles(int N){
+        
         if(N <= 3)
             return 1;
         if(N == 4)
             return 2;
             
-        if(dp[N] != -1)
-            return dp[N];
-            
-        dp[N] = solve(N-1, dp) + solve(N-4, dp);
-        return dp[N];
-    }
-public:
-    long long int arrangeTiles(int N){
         vector<long long int> dp(N+1, -1);
-        return solve(N, dp);
+        dp[1] = 1LL, dp[2] = 1LL, dp[3] = 1LL, dp[4] = 2LL;
+        
+        for(int i=5; i<=N; i++)
+        {
+            dp[i] = dp[i-1] + dp[i-4];
+        }
+        
+        return dp[N];
     }
 };
 
