@@ -10,13 +10,13 @@ using namespace std;
 class Solution {
   public:
     int canReach(int A[], int N) {
-        int reachable = 0;
+        int j = 0;
         for(int i=0; i<N; i++)
         {
-            if(reachable < i) 
+            if(j < i)
                 return 0;
                 
-            reachable = max(reachable, i + A[i]);
+            j = max(i + A[i], j);
         }
         
         return 1;
