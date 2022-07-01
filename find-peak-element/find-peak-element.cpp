@@ -13,6 +13,7 @@ public:
                 r = mid;
         }
         
+        // we could also return l
         return r;
     }
 };
