@@ -38,6 +38,8 @@ class Solution {
             mid = s + (e-s)/2;
         }
         
+        // this line will execute whenever the whole array 
+        // is sorted with 0 rotations, so return last index
         return nums.size() - 1;
     }
     
