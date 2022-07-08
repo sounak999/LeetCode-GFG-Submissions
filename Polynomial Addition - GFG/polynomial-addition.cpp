@@ -112,7 +112,11 @@ class Solution{
             x = x->next;
         }
         
-        x->next = p1? p1:p2;
+        if(!p1)
+            x->next = p2;
+        else
+            x->next = p1;
+            
         return ans->next;
     }
 };
