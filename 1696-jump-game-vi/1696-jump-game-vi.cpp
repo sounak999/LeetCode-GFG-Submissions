@@ -1,23 +1,22 @@
 class Solution {
 public:
-    int maxResult(vector<int>& nums, int k) 
-    {
-	    vector<int> dp(nums.size(), INT_MIN);
-        dp[0] = nums[0];
-        multiset<int> s;
-        s.insert(dp[0]);
+    int maxResult(vector<int>& nums, int k) {
+        vector<int> dp(nums.size());
+	    dp[0] = nums[0];
+	    deque<int> q{ 0 };
         
-	    for(int i = 1; i < size(nums); i++) 
+	    for(int i = 1; i < nums.size(); i++) 
         {
-            if(i > k) 
-            {
-                auto it = s.find(dp[i-1-k]);
-                s.erase(it);
-            }
+		    if(q.front() < i - k) 
+                q.pop_front();
             
-            dp[i] = *rbegin(s) + nums[i];
-            s.insert(dp[i]);
-        }
+		    dp[i] = nums[i] + dp[q.front()]; 
+            
+		    while(!q.empty() && dp[q.back()] <= dp[i])
+                q.pop_back();
+		
+            q.push_back(i);
+	    }
         
 	    return dp.back();
     }
