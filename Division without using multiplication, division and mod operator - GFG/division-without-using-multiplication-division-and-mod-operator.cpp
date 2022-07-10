@@ -22,10 +22,12 @@ class Solution
         long long quotient = 0, temp = 0;
         for(int i=31; i>=0; i--)
         {
+            // cout<<temp<<", "<<(divisor<<i)<<", "<<quotient<<endl;
             if(temp + (divisor << i) <= dividend)
             {
                 temp += (divisor << i);
-                quotient |= 1LL << i;
+                quotient += 1LL << i;
+                // cout<<temp<<", "<<(divisor<<i)<<", "<<i<<", "<<quotient<<endl;
             }
         }
         
