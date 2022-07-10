@@ -26,7 +26,7 @@ class Solution
             if(temp + (divisor << i) <= dividend)
             {
                 temp += (divisor << i);
-                quotient += 1LL << i;
+                quotient |= 1LL << i;
                 // cout<<temp<<", "<<(divisor<<i)<<", "<<i<<", "<<quotient<<endl;
             }
         }
