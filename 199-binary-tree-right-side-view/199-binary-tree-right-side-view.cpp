@@ -10,24 +10,33 @@
  * };
  */
 class Solution {
-    void solve(TreeNode* root, int depth, vector<int>& v)
-    {
-        if(root == NULL)
-            return ;
-        
-        if(depth > v.size())
-            v.push_back(root->val);
-        
-        // for right view, go to right child 
-        solve(root->right, depth+1, v);
-        
-        // then left child
-        solve(root->left, depth+1, v);
-    }
 public:
     vector<int> rightSideView(TreeNode* root) {
+        if(!root)
+            return {};
+        
+        queue<TreeNode*> q;
+        q.push(root);
         vector<int> ans;
-        solve(root, 1, ans);
+        
+        while(!q.empty())
+        {
+            int n = q.size();
+            TreeNode* frontLast = NULL;
+            while(n--)
+            {
+                frontLast = q.front();
+                q.pop();
+                
+                if(frontLast->left)
+                    q.push(frontLast->left);
+                if(frontLast->right)
+                    q.push(frontLast->right);
+            }
+            
+            ans.push_back(frontLast->val);
+        }
+        
         return ans;
     }
 };
