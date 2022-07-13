@@ -102,9 +102,19 @@ class Solution
     {
         if(!root) return ;
         
+        // step 1: go to right and recursion will manage it
         transformTree(root->right);
+        
+        // store root's data for adding in sum 
+        // while going to left
         int curr = root->data;
+        
+        // step 2: whatever right's updated the sum
+        // store into the root's data
         root->data = sum;
+        
+        // step 3: go for left tree but before that 
+        // add root's data
         sum += curr;
         transformTree(root->left);
     }
