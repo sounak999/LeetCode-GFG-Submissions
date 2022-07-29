@@ -1,45 +1,34 @@
 class Solution {
-public:
-    vector<int> found_Pattern(string pattern)
+    bool fun(string &w1, string &w2)
     {
-        if(pattern.size() == 0)
-            return {};
-        
-        vector<int> v;
-        int ind = 0;
-		
-        unordered_map<char,int> mp;
-        for(int i = 0; i<pattern.size(); ++i)
+        unordered_map<char, char> mp;
+        for(int i=0; i<w1.length(); i++)
         {
-           if(mp.find(pattern[i]) == mp.end())
-           {
-               mp.insert({pattern[i],ind++});
-               v.push_back(mp[pattern[i]]);
-           }
-            else
-            {
-                v.push_back(mp[pattern[i]]);
-            }
+            if(!mp.count(w1[i]))
+                mp[w1[i]] = w2[i];
+            else if(mp[w1[i]] != w2[i])
+                return false;
         }
-		
-        return v;
+        
+        vector<bool> visited(26, 0);
+        for(auto i: mp)
+        {
+            if(visited[i.second - 'a'])
+                return false;
+            else
+                visited[i.second - 'a'] = true;
+        }    
+        
+        return true;
     }
     
+public:
     vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
-       
-        vector<int> v = found_Pattern(pattern);
-        
-        int n = words.size();
         vector<string> ans;
         
-
-        for(int i = 0; i<n; ++i)
-        {
-            vector<int> pattern_word = found_Pattern(words[i]);
-            
-            if(v == pattern_word)
-                ans.push_back(words[i]);
-        }
+        for(auto &w: words)
+            if(fun(w, pattern))
+                ans.push_back(w);
         
         return ans;
     }
