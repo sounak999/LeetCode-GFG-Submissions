@@ -1,23 +1,16 @@
 class Solution {
-    int solveMem(vector<int>& nums, int t, vector<int>& dp)
-    {
-        if(t < 0)
-            return 0;
-        if(t == 0)
-            return 1;
-        if(dp[t] != -1)
-            return dp[t];
-            
-        int ans = 0;
-        for(int i=0; i<nums.size(); i++)
-            ans += solveMem(nums, t-nums[i], dp);
-        
-        dp[t] = ans;
-        return dp[t];
-    }
 public:
     int combinationSum4(vector<int>& nums, int target) {
-        vector<int> dp(target+1, -1);
-        return solveMem(nums, target, dp);
+        vector<unsigned int> dp(target+1, 0);
+        dp[0] = 1;
+        
+        for(int i=0; i<=target; i++)
+        {
+            for(int j=0; j<nums.size(); j++)
+                if(i-nums[j] >= 0)
+                    dp[i] += dp[i-nums[j]];
+        }
+        
+        return dp[target];
     }
 };
