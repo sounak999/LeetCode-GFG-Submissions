@@ -13,11 +13,8 @@ public:
         long long good = 0;
         for(auto it: mp)
         {
-            if(it.second > 1)
-            {
-                int freq = it.second;
-                good += (freq * 1LL * (freq - 1)) /2;
-            }
+            int freq = it.second;
+            good += (freq * 1LL * (freq - 1)) /2;
         }
         
         return total - good;
