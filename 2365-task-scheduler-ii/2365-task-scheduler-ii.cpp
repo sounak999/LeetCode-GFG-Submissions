@@ -1,28 +1,33 @@
 class Solution {
 public:
     long long taskSchedulerII(vector<int>& tasks, int space) {
-        unordered_map<long long, long long> m;
-        long long curr = 0;
+        unordered_map<long long, long long> mp;
+        long long day = 0;
         
         for(int i=0; i<tasks.size(); i++)
         {
-            if(!m.count(tasks[i]))
+            day++;
+            if(mp.count(tasks[i]) == 0)
             {
-                m[tasks[i]] = 1 + space + curr;
-                curr++;
+                mp[tasks[i]] = day;
+                
             }
             else
             {
-                if(m[tasks[i]] > curr)
+                // task has been encountered
+                int diff = day - mp[tasks[i]];
+                if(diff > space)
                 {
-                    curr = m[tasks[i]];
+                    mp[tasks[i]] = day;
                 }
-                
-                m[tasks[i]] = 1 + space + curr;
-                curr++;
+                else
+                {
+                    day += mp[tasks[i]] + space + 1 - day;
+                    mp[tasks[i]] = day;
+                }
             }
         }
         
-        return curr;
+        return day;
     }
 };
