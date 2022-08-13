@@ -6,7 +6,7 @@ public:
         
         for(int i=0; i<tasks.size(); i++)
         {
-            day++;
+            // day++;
             if(mp.count(tasks[i]) == 0)
             {
                 mp[tasks[i]] = day;
@@ -26,6 +26,8 @@ public:
                     mp[tasks[i]] = day;
                 }
             }
+            
+            day++;
         }
         
         return day;
