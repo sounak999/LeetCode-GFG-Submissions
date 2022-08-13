@@ -2,21 +2,15 @@ class Solution {
 public:
     long long countBadPairs(vector<int>& nums) {
         int n = nums.size();
+        long long cnt = 0;
         unordered_map<int, int> mp;
         
         for(int i=0; i<n; i++)
         {
-            mp[i - nums[i]]++;
+            cnt += mp[i - nums[i]]++;
         }
         
         long long total = n * 1LL * (n-1) / 2;
-        long long good = 0;
-        for(auto it: mp)
-        {
-            int freq = it.second;
-            good += (freq * 1LL * (freq - 1)) /2;
-        }
-        
-        return total - good;
+        return total - cnt;
     }
 };
