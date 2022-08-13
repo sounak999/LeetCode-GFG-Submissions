@@ -7,10 +7,9 @@ public:
         
         for(int i=0; i<n; i++)
         {
-            cnt += mp[i - nums[i]]++;
+            cnt += i - mp[i - nums[i]]++;
         }
         
-        long long total = n * 1LL * (n-1) / 2;
-        return total - cnt;
+        return cnt;
     }
 };
