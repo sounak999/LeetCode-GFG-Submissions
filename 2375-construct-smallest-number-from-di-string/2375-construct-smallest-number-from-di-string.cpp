@@ -1,40 +1,34 @@
 class Solution {
 public:
-    bool check(string s, string pattern)
-    {
-        for(int i=0; i<pattern.size(); i++)
-        {
-            if(pattern[i] == 'I' && s[i+1] > s[i])
-                continue;
-            else if(pattern[i] == 'D' && s[i+1] < s[i])
-                continue;
-            
-            return false;
-        }
+    string smallestNumber(string pattern) {
+        stack<int> s;
+        string ans = "";
         
-        return true;
-    }
-    
-    string smallestNumber(string pattern) {    
-        string str;
-        int n = pattern.size();
+        if(pattern[0] == 'I') 
+            ans += '1';
+        else 
+            s.push('1');
         
-        for(int i=1; i<=n+1; i++)
+        for(int i = 1; i <= pattern.size(); i++)
         {
-            str.push_back(i + '0');
-        }
-        
-        while(1)
-        {
-            if(check(str, pattern))
+            if(pattern[i-1] == 'I')
             {
-                return str;
+                while(!s.empty())
+                {  
+                    ans += s.top();
+                    s.pop();
+                }
             }
             
-            next_permutation(str.begin(), str.end());
-        }  
+            s.push('0' + i + 1);
+        }
         
-        // this part never gonna execute
-        return "";
+        while(!s.empty())
+        { 
+            ans += s.top();
+            s.pop();
+        }
+        
+        return ans;    
     }
 };
