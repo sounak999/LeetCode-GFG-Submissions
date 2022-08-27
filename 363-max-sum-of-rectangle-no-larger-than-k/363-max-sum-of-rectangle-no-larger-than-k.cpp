@@ -19,7 +19,7 @@ public:
                 
                 // kadane's algo on dp array to find
                 // maximum sum no larger than k
-                int currSum = 0, currMax = INT_MIN;
+                int currSum = 0;
                 set<int> st = {0};
                 for(auto x: dp)
                 {
@@ -27,12 +27,11 @@ public:
                     auto it = st.lower_bound(currSum - k);
                     
                     if(it != st.end())
-                        currMax = max(currMax, currSum - *it);
+                        res = max(res, currSum - *it);
                     
                     st.insert(currSum);
                 }
                 
-                res = max(res, currMax);
             }
         }
         
