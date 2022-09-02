@@ -17,7 +17,6 @@ public:
         queue<TreeNode*> q;
         q.push(root);
         
-        // while there are nodes remaining to be visited
         while(!q.empty())
         {
             double size = q.size();
