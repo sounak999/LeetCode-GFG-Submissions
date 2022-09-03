@@ -1,36 +1,32 @@
 class Solution {
-    void solve(string str, int idx, int n, int k, vector<int> &res)
+    void solve(int num, int idx, int n, int k, vector<int> &res)
     {
-        if(idx == n-1)
+        if(idx == n)
         {
-            if(str.length() > 1)
-                res.push_back(stoi(str));
-            
+            res.push_back(num);
             return ;
         }
         
-        for(int i=0; i<=9; i++)
+        for(int i=0; i<10; i++)
         {
-            int num = str[idx] - '0';
-            int diff = abs(num - i);
+            int ld = num%10;
+            int diff = abs(ld - i);
             if(diff == k)
             {
-                str += to_string(i);
-                solve(str, idx+1, n, k, res);
-                str.pop_back();
+                solve(num*10 + i, idx+1, n, k, res);
             }
         }
-    
     }
-    
+        
 public:
     vector<int> numsSameConsecDiff(int n, int k) {
-        string str = "";
         vector<int> res;
-        for(int i=1; i<=9; i++)
+        
+        for(int i=1; i<10; i++)
         {
-            str = to_string(i);
-            solve(str, 0, n, k, res);
+            // no. of digits
+            int no = 1;
+            solve(i, no, n, k, res);
         }
         
         return res;
